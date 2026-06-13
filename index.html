@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Dhiraj Sinha — Senior Product & Engineering Leader | Enterprise B2B SaaS | Salesforce, HubSpot, Dynamics | 30+ Team"/>
+<title>Dhiraj Sinha — Senior Product & Engineering Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628;
+    --blue: #1a5276;
+    --sky: #2e86c1;
+    --accent: #f0a500;
+    --accent-dim: rgba(240,165,0,.15);
+    --light: #eaf2fb;
+    --gray: #8496a9;
+    --text: #1c2b3a;
+    --muted: #3d5166;
+    --white: #fff;
+    --card: rgba(255,255,255,.04);
+    --border: rgba(255,255,255,.1);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.65; overflow-x: hidden; }
+  body.menu-open { overflow: hidden; }
+
+  /* ── KEYFRAMES ── */
+  @keyframes float-glow {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    50% { transform: translate(-24px, 18px) scale(1.06); opacity: .85; }
+  }
+  @keyframes grid-drift {
+    0% { background-position: 0 0; }
+    100% { background-position: 48px 48px; }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(240,165,0,.5); }
+    50% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(240,165,0,0); }
+  }
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(32px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes hero-slide {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes line-grow {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+  @keyframes dot-pop {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes stat-pop {
+    from { opacity: 0; transform: translateY(16px) scale(.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,22,40,.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(16px, 4vw, 48px); height: 64px;
+    transition: height .3s, background .3s, box-shadow .3s;
+  }
+  nav.scrolled {
+    height: 56px;
+    background: rgba(10,22,40,.98);
+    box-shadow: 0 8px 32px rgba(0,0,0,.25);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; color: var(--white); font-size: 1.05rem; letter-spacing: .04em; }
+  .nav-logo span { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,.65); text-decoration: none; font-size: .8rem;
+    font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: color .2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+  .nav-links a.active { position: relative; }
+  .nav-links a.active::after {
+    content: ''; position: absolute; bottom: -6px; left: 0; right: 0;
+    height: 2px; background: var(--accent); border-radius: 2px;
+  }
+  .menu-toggle {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    width: 40px; height: 40px; background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15); border-radius: 8px;
+    cursor: pointer; padding: 0; flex-shrink: 0;
+  }
+  .menu-toggle span {
+    display: block; width: 18px; height: 2px; background: var(--white);
+    margin: 0 auto; border-radius: 2px; transition: transform .3s, opacity .3s;
+  }
+  .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-drawer {
+    position: fixed; inset: 0; z-index: 99; pointer-events: none;
+  }
+  .mobile-drawer.open { pointer-events: auto; }
+  .drawer-backdrop {
+    position: absolute; inset: 0; background: rgba(0,0,0,.55);
+    opacity: 0; transition: opacity .35s;
+  }
+  .mobile-drawer.open .drawer-backdrop { opacity: 1; }
+  .drawer-panel {
+    position: absolute; top: 0; right: 0; width: min(300px, 85vw); height: 100%;
+    background: var(--navy); padding: 80px 28px 32px;
+    transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1);
+    border-left: 1px solid rgba(255,255,255,.08);
+    overflow-y: auto;
+  }
+  .mobile-drawer.open .drawer-panel { transform: translateX(0); }
+  .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .drawer-links a {
+    display: block; color: rgba(255,255,255,.85); text-decoration: none;
+    font-size: 1rem; font-weight: 500; padding: 14px 16px; border-radius: 8px;
+    transition: background .2s, color .2s;
+  }
+  .drawer-links a:hover, .drawer-links a.active {
+    background: rgba(240,165,0,.12); color: var(--accent);
+  }
+  .drawer-resume {
+    display: block; margin-top: 24px; text-align: center;
+    background: var(--accent); color: var(--navy); padding: 14px;
+    border-radius: 8px; font-weight: 700; text-decoration: none; font-size: .9rem;
+  }
+  .nav-resume {
+    background: var(--accent); color: var(--navy); padding: 8px 18px; border-radius: 6px;
+    font-size: .78rem; font-weight: 700; text-decoration: none; letter-spacing: .04em;
+    text-transform: uppercase; transition: transform .2s, background .2s; white-space: nowrap;
+  }
+  .nav-resume:hover { background: #d4920a; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; background: var(--navy);
+    display: flex; align-items: center;
+    padding: 110px clamp(20px, 4vw, 48px) 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(46,134,193,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46,134,193,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
+    animation: grid-drift 24s linear infinite;
+  }
+  .hero-glow {
+    position: absolute; top: -20%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(46,134,193,.2) 0%, rgba(240,165,0,.06) 40%, transparent 70%);
+    pointer-events: none;
+    animation: float-glow 10s ease-in-out infinite;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-dim); border: 1px solid rgba(240,165,0,.35);
+    color: var(--accent); font-size: .72rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 22px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px; background: var(--accent);
+    border-radius: 50%; animation: pulse-dot 2.2s ease-in-out infinite;
+  }
+  .hero-content > * { animation: hero-rise .8s cubic-bezier(.2,.8,.2,1) both; }
+  .hero-eyebrow { animation-delay: .1s; }
+  .hero h1 { animation-delay: .22s; }
+  .hero-lead { animation-delay: .36s; }
+  .hero-tags { animation-delay: .5s; }
+  .hero-cta { animation-delay: .64s; }
+  .hero-card { animation: hero-slide .9s cubic-bezier(.2,.8,.2,1) .45s both; }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    color: var(--white); line-height: 1.1; margin-bottom: 16px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { font-size: 1.05rem; color: rgba(255,255,255,.72); margin-bottom: 28px; max-width: 580px; line-height: 1.7; }
+  .hero-lead strong { color: rgba(255,255,255,.95); font-weight: 600; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .tag {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.78); font-size: .75rem; padding: 5px 12px; border-radius: 4px;
+    transition: transform .25s, border-color .25s, background .25s;
+  }
+  .tag:hover { transform: translateY(-2px); border-color: rgba(240,165,0,.4); background: rgba(240,165,0,.08); }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: .88rem;
+    text-decoration: none; transition: all .2s; border: none; cursor: pointer;
+  }
+  .btn-primary { background: var(--accent); color: var(--navy); }
+  .btn-primary:hover { background: #d4920a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(240,165,0,.25); }
+  .btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,.25); color: var(--white); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero metric card */
+  .hero-card {
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px; padding: 28px; backdrop-filter: blur(8px);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.06) 50%, transparent 60%);
+    background-size: 200% 100%; animation: shimmer 6s ease-in-out infinite;
+  }
+  .hero-metrics-mobile { display: none; }
+  .hero-card-label { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 20px; }
+  .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-val { font-family: 'Syne', sans-serif; font-size: 1.6rem; color: var(--white); line-height: 1; }
+  .metric-val span { font-size: .9rem; color: var(--accent); }
+  .metric-desc { font-size: .78rem; color: rgba(255,255,255,.5); text-align: right; max-width: 130px; line-height: 1.4; }
+  .crm-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+  .crm-badge {
+    font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    padding: 5px 10px; border-radius: 4px;
+    background: rgba(46,134,193,.2); color: #7ec8f7; border: 1px solid rgba(46,134,193,.3);
+  }
+
+  /* STATS */
+  .stats {
+    background: var(--light); display: grid; grid-template-columns: repeat(4, 1fr);
+    border-bottom: 2px solid #d5e8f0;
+  }
+  .stat {
+    padding: 32px 24px; text-align: center; border-right: 1px solid #c5dcf0;
+    opacity: 0; transform: translateY(16px);
+  }
+  .stat.animate { animation: stat-pop .6s cubic-bezier(.2,.8,.2,1) forwards; }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; color: var(--blue); line-height: 1; }
+  .stat-num .unit { font-size: 1.2rem; }
+  .stat-label { font-size: .75rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .07em; margin-top: 6px; }
+
+  /* SECTIONS */
+  section { padding: clamp(64px, 8vw, 96px) clamp(20px, 4vw, 48px); max-width: 1100px; margin: 0 auto; scroll-margin-top: 72px; }
+  #impact, #skills { scroll-margin-top: 72px; }
+  .section-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--sky); margin-bottom: 8px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--navy); margin-bottom: 40px; line-height: 1.15; }
+
+  /* UVP / ABOUT */
+  .uvp-block {
+    background: linear-gradient(135deg, var(--navy), #122640);
+    border-radius: 16px; padding: clamp(28px, 4vw, 44px);
+    color: rgba(255,255,255,.85); margin-bottom: 48px;
+    border-left: 4px solid var(--accent);
+    position: relative; overflow: hidden;
+    transition: transform .4s, box-shadow .4s;
+  }
+  .uvp-block:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(10,22,40,.2); }
+  .uvp-block p { font-size: 1rem; line-height: 1.75; margin-bottom: 14px; }
+  .uvp-block p:last-child { margin-bottom: 0; }
+  .uvp-block strong { color: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .highlight-card {
+    background: var(--light); border-radius: 12px; padding: 22px 24px;
+    border: 1px solid #d5e8f0; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;
+  }
+  .highlight-card:hover {
+    transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,82,118,.12);
+    border-color: rgba(46,134,193,.35);
+  }
+  .highlight-icon { font-size: 1.4rem; margin-bottom: 10px; }
+  .highlight-card h4 { font-size: .92rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .highlight-card p { font-size: .84rem; color: var(--muted); line-height: 1.55; }
+
+  /* IMPACT */
+  #impact { max-width: 100%; background: #f8fbfe; padding: clamp(64px, 8vw, 96px) clamp(20px, 4vw, 48px); }
+  .impact-inner { max-width: 1100px; margin: 0 auto; }
+  .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .impact-card {
+    background: var(--white); border: 1px solid #d5e8f0; border-radius: 14px;
+    padding: 28px 22px; text-align: center;
+    transition: transform .35s, box-shadow .35s, border-color .35s;
+  }
+  .impact-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(26,82,118,.12);
+    border-color: var(--sky);
+  }
+  .impact-num { font-family: 'Syne', sans-serif; font-size: 2rem; color: var(--sky); line-height: 1; margin-bottom: 8px; }
+  .impact-title { font-size: .82rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .impact-desc { font-size: .78rem; color: var(--gray); line-height: 1.45; }
+
+  /* PRODUCT SPOTLIGHT */
+  .spotlight {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    background: var(--light); border-radius: 16px; padding: 40px; border: 1px solid #d5e8f0;
+  }
+  .spotlight-tag { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--sky); margin-bottom: 10px; }
+  .spotlight h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 12px; }
+  .spotlight p { font-size: .92rem; color: var(--muted); margin-bottom: 16px; line-height: 1.65; }
+  .spotlight-list { list-style: none; margin-bottom: 20px; }
+  .spotlight-list li {
+    font-size: .85rem; color: var(--muted); padding: 6px 0 6px 20px;
+    position: relative; border-bottom: 1px solid rgba(0,0,0,.04);
+  }
+  .spotlight-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .spotlight-visual {
+    background: var(--navy); border-radius: 12px; padding: 32px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .spotlight-stat {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; background: rgba(255,255,255,.05); border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .spotlight-stat-val { font-family: 'Syne', sans-serif; color: var(--accent); font-size: 1.1rem; }
+  .spotlight-stat-label { font-size: .78rem; color: rgba(255,255,255,.6); }
+
+  /* TIMELINE */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 18px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--sky), transparent);
+    transform-origin: top; transform: scaleY(0);
+    transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
+  }
+  .timeline.line-visible::before { transform: scaleY(1); }
+  .timeline-item { display: grid; grid-template-columns: 56px 1fr; gap: 24px; margin-bottom: 36px; align-items: start; }
+  .timeline-dot {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--white);
+    border: 3px solid var(--sky); display: flex; align-items: center; justify-content: center;
+    font-size: .72rem; font-weight: 700; color: var(--sky); position: relative; z-index: 1; margin-top: 4px;
+    transition: transform .35s, box-shadow .35s;
+  }
+  .timeline-item.visible .timeline-dot { animation: dot-pop .5s cubic-bezier(.2,.8,.2,1) both; }
+  .timeline-item.visible .timeline-dot:hover { transform: scale(1.12); box-shadow: 0 0 0 6px rgba(46,134,193,.15); }
+  .timeline-dot.featured { border-color: var(--accent); color: var(--accent); background: #fffdf5; }
+  .job-card {
+    background: var(--white); border: 1px solid #d5e8f0; border-radius: 14px;
+    padding: 26px 28px; transition: box-shadow .2s, transform .2s;
+  }
+  .job-card.featured { border-color: rgba(240,165,0,.4); box-shadow: 0 4px 24px rgba(240,165,0,.08); }
+  .job-card:hover { box-shadow: 0 10px 36px rgba(26,82,118,.1); transform: translateY(-2px); }
+  .job-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .job-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; color: var(--navy); font-weight: 700; }
+  .job-period { font-size: .75rem; color: var(--gray); background: var(--light); padding: 4px 12px; border-radius: 20px; }
+  .job-company { font-size: .88rem; font-weight: 600; color: var(--sky); margin-bottom: 4px; }
+  .job-meta { font-size: .8rem; color: var(--gray); font-style: italic; margin-bottom: 12px; }
+  .job-bullets { padding-left: 18px; }
+  .job-bullets li { font-size: .86rem; color: var(--muted); margin-bottom: 6px; line-height: 1.5; }
+  .job-metric {
+    display: inline-block; margin-top: 10px; font-size: .75rem; font-weight: 700;
+    color: var(--blue); background: var(--light); padding: 4px 10px; border-radius: 4px;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--navy); max-width: 100%; padding: clamp(64px, 8vw, 96px) clamp(20px, 4vw, 48px); }
+  #skills .section-title { color: var(--white); }
+  #skills .section-eyebrow { color: var(--accent); }
+  .skills-inner { max-width: 1100px; margin: 0 auto; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .skill-group {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px;
+  }
+  .skill-group h4 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 700; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pill {
+    background: rgba(255,255,255,.07); color: rgba(255,255,255,.82);
+    font-size: .78rem; padding: 5px 11px; border-radius: 4px;
+    transition: transform .25s, background .25s, color .25s;
+    display: inline-block;
+  }
+  .pill:hover { transform: translateY(-2px) scale(1.04); background: rgba(240,165,0,.18); color: var(--white); }
+  .skill-group { transition: transform .35s, border-color .35s; }
+  .skill-group:hover { transform: translateY(-3px); border-color: rgba(240,165,0,.25); }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .edu-card {
+    background: var(--light); border-radius: 12px; padding: 24px 28px;
+    border: 1px solid #d5e8f0;
+  }
+  .edu-card h4 { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .edu-card p { font-size: .84rem; color: var(--gray); }
+
+  /* CONTACT */
+  .contact-wrapper {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    border-radius: 20px; padding: clamp(40px, 6vw, 72px) clamp(28px, 4vw, 64px);
+    text-align: center; color: var(--white);
+  }
+  .contact-wrapper h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px; }
+  .contact-wrapper > p { color: rgba(255,255,255,.65); margin-bottom: 36px; font-size: .95rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+    color: var(--white); padding: 13px 24px; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: .88rem; transition: all .2s;
+  }
+  .contact-link:hover { background: var(--accent); border-color: var(--accent); color: var(--navy); }
+
+  footer { text-align: center; padding: 28px; font-size: .78rem; color: var(--gray); border-top: 1px solid #e5eef5; }
+
+  /* REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transition: opacity .65s cubic-bezier(.2,.8,.2,1), transform .65s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal-up { transform: translateY(28px); }
+  .reveal-left { transform: translateX(-28px); }
+  .reveal-right { transform: translateX(28px); }
+  .reveal-scale { transform: scale(.94); }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal[data-delay] { transition-delay: 0ms; }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+    .reveal, .fade-in { opacity: 1; transform: none; }
+    .stat { opacity: 1; transform: none; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+    .hero-card { display: none; }
+    .hero-metrics-mobile {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+      margin-top: 8px;
+    }
+    .metric-chip {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px; padding: 14px; text-align: center;
+    }
+    .metric-chip-val { font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--accent); line-height: 1; }
+    .metric-chip-label { font-size: .68rem; color: rgba(255,255,255,.55); margin-top: 4px; line-height: 1.3; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-bottom: 1px solid #c5dcf0; }
+    .stat:nth-child(odd) { border-right: 1px solid #c5dcf0; }
+    .stat:nth-child(2), .stat:nth-child(4) { border-right: none; }
+    .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .spotlight { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
+    .about-grid, .edu-grid { grid-template-columns: 1fr; }
+    .nav-resume { display: none; }
+    .menu-toggle { display: flex; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { min-height: auto; padding: 96px 20px 56px; }
+    .hero h1 { font-size: clamp(1.85rem, 8vw, 2.6rem); }
+    .hero-lead { font-size: .95rem; }
+    .hero-cta { flex-direction: column; }
+    .hero-cta .btn { width: 100%; justify-content: center; }
+    .section-title { margin-bottom: 28px; }
+    section { padding: 56px 20px; }
+    #impact, #skills { padding: 56px 20px; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .stat { padding: 24px 16px; }
+    .stat-num { font-size: 1.8rem; }
+    .timeline::before { left: 14px; }
+    .timeline-item { grid-template-columns: 40px 1fr; gap: 14px; margin-bottom: 28px; }
+    .timeline-dot { width: 30px; height: 30px; font-size: .65rem; }
+    .job-card { padding: 20px 18px; }
+    .job-header { flex-direction: column; align-items: flex-start; }
+    .job-title { font-size: .98rem; }
+    .contact-links { flex-direction: column; align-items: stretch; }
+    .contact-link { justify-content: center; }
+    .uvp-block { padding: 24px 20px; }
+    footer { padding: 24px 16px; font-size: .72rem; line-height: 1.5; }
+  }
+  @media (max-width: 380px) {
+    .hero-metrics-mobile { grid-template-columns: 1fr 1fr; }
+    .hero-tags .tag { font-size: .7rem; padding: 4px 9px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-logo">Dhiraj <span>Sinha</span></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-nav="about">About</a></li>
+      <li><a href="#impact" data-nav="impact">Impact</a></li>
+      <li><a href="#experience" data-nav="experience">Experience</a></li>
+      <li><a href="#skills" data-nav="skills">Skills</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
+    <a href="Dhiraj_Sinha_Resume.html" target="_blank" class="nav-resume">View Resume</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="drawer-panel">
+    <ul class="drawer-links">
+      <li><a href="#about" data-nav="about">About</a></li>
+      <li><a href="#impact" data-nav="impact">Impact</a></li>
+      <li><a href="#experience" data-nav="experience">Experience</a></li>
+      <li><a href="#skills" data-nav="skills">Skills</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
+    <a href="Dhiraj_Sinha_Resume.html" target="_blank" class="drawer-resume">View Resume →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Enterprise B2B SaaS Leader</div>
+      <h1>Senior Product &amp;<br><em>Engineering Leader</em></h1>
+      <p class="hero-lead">
+        I run <strong>India product &amp; engineering for a US enterprise SaaS company</strong> — 30+ people, direct founder access, and CRM platforms integrated with <strong>Salesforce, HubSpot, and Dynamics</strong>. I manage outcomes: <strong>35% faster delivery</strong> and executive feedback in <strong>days, not weeks</strong>.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Product Management</span>
+        <span class="tag">B2B SaaS</span>
+        <span class="tag">Salesforce</span>
+        <span class="tag">HubSpot</span>
+        <span class="tag">Microsoft Dynamics</span>
+        <span class="tag">Agile · PRD · Roadmap</span>
+        <span class="tag">30+ Team Leadership</span>
+        <span class="tag">Global Stakeholders</span>
+      </div>
+      <div class="hero-cta">
+        <a href="Dhiraj_Sinha_Resume.html" target="_blank" class="btn btn-primary">Download Resume</a>
+        <a href="https://www.linkedin.com/in/dhiraj-sinha-75803a131" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn Profile</a>
+        <a href="#experience" class="btn btn-outline">View Experience</a>
+      </div>
+      <div class="hero-metrics-mobile">
+        <div class="metric-chip"><div class="metric-chip-val">35%</div><div class="metric-chip-label">Delivery Gain</div></div>
+        <div class="metric-chip"><div class="metric-chip-val">30+</div><div class="metric-chip-label">Team Led</div></div>
+        <div class="metric-chip"><div class="metric-chip-val">15+</div><div class="metric-chip-label">Years Exp.</div></div>
+        <div class="metric-chip"><div class="metric-chip-val">3</div><div class="metric-chip-label">CRM Platforms</div></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">At a Glance</div>
+      <div class="metric-row">
+        <div class="metric-val">35<span>%</span></div>
+        <div class="metric-desc">Delivery velocity &amp; quality improvement</div>
+      </div>
+      <div class="metric-row">
+        <div class="metric-val">30<span>+</span></div>
+        <div class="metric-desc">Engineers &amp; support staff led in India</div>
+      </div>
+      <div class="metric-row">
+        <div class="metric-val">15<span>+</span></div>
+        <div class="metric-desc">Years in product &amp; engineering leadership</div>
+      </div>
+      <div class="metric-row">
+        <div class="metric-val">US<span></span></div>
+        <div class="metric-desc">HQ enterprise SaaS · daily founder alignment</div>
+      </div>
+      <div class="crm-badges">
+        <span class="crm-badge">Salesforce</span>
+        <span class="crm-badge">HubSpot</span>
+        <span class="crm-badge">Dynamics</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats" id="statsBar">
+  <div class="stat" data-delay="0"><div class="stat-num"><span class="counter" data-target="15">0</span><span class="unit">+</span></div><div class="stat-label">Years Experience</div></div>
+  <div class="stat" data-delay="100"><div class="stat-num"><span class="counter" data-target="30">0</span><span class="unit">+</span></div><div class="stat-label">Team Led</div></div>
+  <div class="stat" data-delay="200"><div class="stat-num"><span class="counter" data-target="35">0</span><span class="unit">%</span></div><div class="stat-label">Delivery Improvement</div></div>
+  <div class="stat" data-delay="300"><div class="stat-num"><span class="counter" data-target="3">0</span></div><div class="stat-label">CRM Platforms Integrated</div></div>
+</div>
+
+<!-- ABOUT / UVP -->
+<section id="about">
+  <div class="section-eyebrow">Unique Value</div>
+  <div class="section-title">Strategy. Execution. Shipped.</div>
+  <div class="uvp-block reveal reveal-up">
+    <p><strong>I don't just write PRDs — I run India product &amp; engineering for a US enterprise SaaS company:</strong> 30+ people, direct founder access, and CRM platforms that integrate Salesforce, HubSpot, and Dynamics at scale.</p>
+    <p>Most product leaders manage backlogs. <strong>I manage outcomes</strong> — 35% faster delivery, executive feedback in days not weeks, and teams that ship what US enterprise clients actually adopt.</p>
+    <p>15+ years from enterprise platform ownership to senior B2B SaaS leadership. Technical enough to challenge engineering. Strategic enough to align founders. Operational enough to deliver.</p>
+  </div>
+  <div class="about-grid">
+    <div class="highlight-card reveal reveal-up" data-delay="0">
+      <div class="highlight-icon">🌐</div>
+      <h4>Global Product &amp; Engineering Operations</h4>
+      <p>Primary interface between US founders and a 30+ member India team — PRDs, roadmaps, release plans, and production go-live for enterprise clients.</p>
+    </div>
+    <div class="highlight-card reveal reveal-up" data-delay="100">
+      <div class="highlight-icon">⚡</div>
+      <h4>CRM Integration at Enterprise Scale</h4>
+      <p>Product strategy for automated lead assignment across Salesforce, HubSpot, and Microsoft Dynamics — workflow automation US enterprise teams rely on.</p>
+    </div>
+    <div class="highlight-card reveal reveal-up" data-delay="200">
+      <div class="highlight-icon">📈</div>
+      <h4>Proven Delivery Outcomes</h4>
+      <p>35% improvement in delivery velocity and quality. Stakeholder feedback cycles compressed from weeks to days through structured Agile operating rhythms.</p>
+    </div>
+    <div class="highlight-card reveal reveal-up" data-delay="300">
+      <div class="highlight-icon">⚙️</div>
+      <h4>Technical + Strategic Leadership</h4>
+      <p>Hands-on fluency in Node.js, React, Angular, and PostgreSQL — bridging product strategy and engineering execution without losing speed or clarity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<div id="impact">
+  <div class="impact-inner">
+    <div class="section-eyebrow">Measurable Impact</div>
+    <div class="section-title" style="color:var(--navy);">Results Recruiters Care About</div>
+    <div class="impact-grid">
+      <div class="impact-card reveal reveal-scale" data-delay="0">
+        <div class="impact-num">35%</div>
+        <div class="impact-title">Faster Delivery</div>
+        <div class="impact-desc">Agile sprint planning, release governance &amp; QA redesign</div>
+      </div>
+      <div class="impact-card reveal reveal-scale" data-delay="100">
+        <div class="impact-num">Weeks→Days</div>
+        <div class="impact-title">Feedback Cycles</div>
+        <div class="impact-desc">Exec syncs, demo cadence &amp; prioritization frameworks</div>
+      </div>
+      <div class="impact-card reveal reveal-scale" data-delay="200">
+        <div class="impact-num">30+</div>
+        <div class="impact-title">Cross-Functional Team</div>
+        <div class="impact-desc">Engineering, QA, support &amp; product under one operating rhythm</div>
+      </div>
+      <div class="impact-card reveal reveal-scale" data-delay="300">
+        <div class="impact-num">3</div>
+        <div class="impact-title">CRM Integrations</div>
+        <div class="impact-desc">Salesforce · HubSpot · Microsoft Dynamics at production scale</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT SPOTLIGHT -->
+<section id="spotlight">
+  <div class="section-eyebrow">Current Product</div>
+  <div class="section-title">LeadAngel — Enterprise CRM SaaS</div>
+  <div class="spotlight reveal reveal-up">
+    <div>
+      <div class="spotlight-tag">US-Headquartered · B2B SaaS</div>
+      <h3>Automated Lead Assignment Platform</h3>
+      <p>I lead India product &amp; engineering for LeadAngel — an enterprise SaaS platform that automates lead routing and assignment for US clients through deep CRM integrations.</p>
+      <ul class="spotlight-list">
+        <li>Product strategy, PRDs &amp; quarterly roadmaps for US founders</li>
+        <li>Salesforce, HubSpot &amp; Microsoft Dynamics integrations</li>
+        <li>Cross-functional delivery across Product, Engineering, QA &amp; Support</li>
+        <li>Enterprise client outcomes &amp; production release readiness</li>
+      </ul>
+      <a href="https://www.leadangel.com/" target="_blank" rel="noopener" class="btn btn-primary">View Platform →</a>
+    </div>
+    <div class="spotlight-visual">
+      <div class="spotlight-stat"><span class="spotlight-stat-label">Team Size</span><span class="spotlight-stat-val">30+</span></div>
+      <div class="spotlight-stat"><span class="spotlight-stat-label">Delivery Gain</span><span class="spotlight-stat-val">+35%</span></div>
+      <div class="spotlight-stat"><span class="spotlight-stat-label">CRM Stack</span><span class="spotlight-stat-val">SF · HS · D365</span></div>
+      <div class="spotlight-stat"><span class="spotlight-stat-label">Scope</span><span class="spotlight-stat-val">India Ops Lead</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="padding-top:0;">
+  <div class="section-eyebrow">Career</div>
+  <div class="section-title">Professional Experience</div>
+  <div class="timeline" id="timeline">
+
+    <div class="timeline-item reveal reveal-right" data-delay="0">
+      <div class="timeline-dot featured">★</div>
+      <div class="job-card featured">
+        <div class="job-header">
+          <div class="job-title">Senior Product Manager — India Operations</div>
+          <div class="job-period">May 2024 – Present</div>
+        </div>
+        <div class="job-company">LeadAngel Technologies Pvt Ltd · Bhilai, India (HQ: USA)</div>
+        <div class="job-meta">B2B Enterprise SaaS · CRM Lead Automation</div>
+        <ul class="job-bullets">
+          <li>Lead product and engineering operations for a US-headquartered B2B enterprise SaaS platform, managing 30+ engineers and support staff across India.</li>
+          <li>Primary interface between US founders/executive stakeholders and India engineering; translate priorities into PRDs, quarterly roadmaps, and release plans.</li>
+          <li>Own product strategy for automated lead assignment and enterprise CRM integrations (Salesforce, HubSpot, Microsoft Dynamics).</li>
+          <li>Improved delivery velocity and product quality by 35% through Agile sprint planning, release governance, and QA process redesign.</li>
+          <li>Reduced stakeholder feedback cycles from weeks to days via structured exec syncs, demo cadence, and prioritization frameworks.</li>
+          <li>Drive cross-functional alignment across Product, Engineering, QA, and Customer Support for enterprise client outcomes and production readiness.</li>
+        </ul>
+        <span class="job-metric">+35% delivery · Weeks → days feedback</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal reveal-right" data-delay="150">
+      <div class="timeline-dot">02</div>
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">Senior Product Consultant</div>
+          <div class="job-period">Apr 2021 – Jun 2023</div>
+        </div>
+        <div class="job-company">Saytum Technologies Pvt Ltd · Bhilai, India</div>
+        <div class="job-meta">B2B SaaS Marketplace Platform</div>
+        <ul class="job-bullets">
+          <li>Owned product strategy for a B2B SaaS marketplace platform supporting high-volume, transaction-heavy enterprise workflows.</li>
+          <li>Defined product workflows, business rules, and system architecture — service matching, partner onboarding, and allocation logic.</li>
+          <li>Authored PRDs, functional specs, and business logic documentation from MVP through production releases.</li>
+          <li>Built roadmap aligned to business goals, prioritizing by customer impact, revenue leverage, and engineering capacity.</li>
+          <li>Partnered with engineering on journey optimization, release planning, and UAT to improve conversion and platform reliability.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal reveal-right" data-delay="300">
+      <div class="timeline-dot">03</div>
+      <div class="job-card">
+        <div class="job-header">
+          <div class="job-title">Product Owner — Enterprise Platform</div>
+          <div class="job-period">Jun 2010 – Aug 2020</div>
+        </div>
+        <div class="job-company">Jai Balaji Logitech Private Limited (JBL Xpress) · Delhi, India</div>
+        <div class="job-meta">Enterprise Operations Platform</div>
+        <ul class="job-bullets">
+          <li>Owned product requirements and workflow design for an enterprise operations platform across multi-location business units.</li>
+          <li>Partnered with development teams on specifications, UAT, and production rollouts, improving release predictability.</li>
+          <li>Translated business requirements into user flows, business rules, and prioritized feature backlogs.</li>
+          <li>Progressed through increasing leadership responsibility over a 10-year tenure, culminating in product ownership at scale.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal reveal-right" data-delay="450">
+      <div class="timeline-dot" style="border-color:var(--accent);color:var(--accent);">📚</div>
+      <div class="job-card" style="border-color:#fde9b0;background:#fffdf5;">
+        <div class="job-header">
+          <div class="job-title" style="color:#7d5a00;">Professional Development — Full-Stack Upskilling</div>
+          <div class="job-period">Aug 2020 – Mar 2021</div>
+        </div>
+        <div class="job-company" style="color:#b07d00;">SEED IT Solutions + Independent Study · Bhilai, India</div>
+        <ul class="job-bullets">
+          <li>Completed certified full-stack program: Node.js, React, Angular, HTML/CSS, SQL, PostgreSQL.</li>
+          <li>Applied learning through hands-on projects bridging business analysis with modern software development.</li>
+          <li>Transitioned into dedicated B2B SaaS product consulting roles.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div id="skills">
+  <div class="skills-inner">
+    <div class="section-eyebrow">Capabilities</div>
+    <div class="section-title">Technical &amp; Product Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group reveal reveal-up" data-delay="0">
+        <h4>Product &amp; Strategy</h4>
+        <div class="skill-pills">
+          <span class="pill">Product Strategy</span><span class="pill">PRD Writing</span>
+          <span class="pill">Roadmapping</span><span class="pill">Backlog Prioritization</span>
+          <span class="pill">Go-to-Market</span><span class="pill">SDLC</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-up" data-delay="80">
+        <h4>Agile &amp; Delivery</h4>
+        <div class="skill-pills">
+          <span class="pill">Agile / Scrum</span><span class="pill">Sprint Planning</span>
+          <span class="pill">Release Management</span><span class="pill">UAT</span>
+          <span class="pill">QA Governance</span><span class="pill">Jira</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-up" data-delay="160">
+        <h4>CRM &amp; Enterprise SaaS</h4>
+        <div class="skill-pills">
+          <span class="pill">Salesforce</span><span class="pill">HubSpot</span>
+          <span class="pill">Microsoft Dynamics</span><span class="pill">B2B SaaS</span>
+          <span class="pill">API Integrations</span><span class="pill">Workflow Automation</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-up" data-delay="240">
+        <h4>Leadership</h4>
+        <div class="skill-pills">
+          <span class="pill">Cross-functional (30+)</span><span class="pill">Stakeholder Management</span>
+          <span class="pill">Global Teams</span><span class="pill">People Leadership</span>
+          <span class="pill">Executive Communication</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-up" data-delay="320">
+        <h4>Technical</h4>
+        <div class="skill-pills">
+          <span class="pill">Node.js</span><span class="pill">React.js</span>
+          <span class="pill">Angular</span><span class="pill">PostgreSQL</span>
+          <span class="pill">System Design</span><span class="pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-up" data-delay="400">
+        <h4>Modern Development</h4>
+        <div class="skill-pills">
+          <span class="pill">AI-assisted Development</span><span class="pill">Prompt Engineering</span>
+          <span class="pill">LLM Workflows</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-eyebrow">Credentials</div>
+  <div class="section-title">Education &amp; Certifications</div>
+  <div class="edu-grid reveal reveal-up">
+    <div class="edu-card">
+      <h4>Bachelor of Commerce</h4>
+      <p>Pt. Ravishankar Shukla University, Raipur · 2005 – 2008</p>
+    </div>
+    <div class="edu-card">
+      <h4>Certified Full-Stack Developer</h4>
+      <p>SEED IT Solutions, Bhilai · 2020 – 2021<br/>Node.js · React · Angular · PostgreSQL</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper reveal reveal-scale">
+    <h2>Let's Connect</h2>
+    <p>Always happy to connect with product, engineering, and technology leaders building enterprise software at global scale.</p>
+    <div class="contact-links">
+      <a href="mailto:yy.dhiraj@gmail.com" class="contact-link">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        yy.dhiraj@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/dhiraj-sinha-75803a131" target="_blank" rel="noopener" class="contact-link">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="Dhiraj_Sinha_Resume.html" target="_blank" class="contact-link">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Resume
+      </a>
+      <a href="https://www.leadangel.com/" target="_blank" rel="noopener" class="contact-link">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+        LeadAngel
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Dhiraj Sinha · Senior Product &amp; Engineering Leader · Enterprise B2B SaaS · Bhilai, India
+</footer>
+
+<script>
+(function () {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Scroll reveal with stagger */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const delay = parseInt(el.dataset.delay || '0', 10);
+      setTimeout(() => {
+        el.classList.add('visible');
+        if (el.classList.contains('timeline-item')) el.classList.add('visible');
+      }, prefersReduced ? 0 : delay);
+      revealObserver.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .fade-in').forEach(el => revealObserver.observe(el));
+
+  /* Timeline line draw */
+  const timeline = document.getElementById('timeline');
+  if (timeline) {
+    const tlObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        timeline.classList.add('line-visible');
+        tlObserver.disconnect();
+      }
+    }, { threshold: 0.15 });
+    tlObserver.observe(timeline);
+  }
+
+  /* Stats counter animation */
+  const statsBar = document.getElementById('statsBar');
+  let statsDone = false;
+  function animateCounter(el, target) {
+    if (prefersReduced) { el.textContent = target; return; }
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  if (statsBar) {
+    const statsObserver = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting || statsDone) return;
+      statsDone = true;
+      statsBar.querySelectorAll('.stat').forEach((stat, i) => {
+        setTimeout(() => {
+          stat.classList.add('animate');
+          const counter = stat.querySelector('.counter');
+          if (counter) animateCounter(counter, parseInt(counter.dataset.target, 10));
+        }, prefersReduced ? 0 : i * 120);
+      });
+      statsObserver.disconnect();
+    }, { threshold: 0.3 });
+    statsObserver.observe(statsBar);
+  }
+
+  /* Nav scroll shrink */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* Active nav link on scroll */
+  const sections = ['about', 'impact', 'experience', 'skills', 'contact'];
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.nav === id));
+      }
+    });
+  }, { threshold: 0.35, rootMargin: '-64px 0px -50% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+
+  /* Mobile drawer */
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+  function openMenu() {
+    mobileDrawer.classList.add('open');
+    menuToggle.classList.add('open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    mobileDrawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    mobileDrawer.classList.remove('open');
+    menuToggle.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    mobileDrawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+  menuToggle.addEventListener('click', () => {
+    mobileDrawer.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  drawerBackdrop.addEventListener('click', closeMenu);
+  document.querySelectorAll('.drawer-links a, .drawer-resume').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+  window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+})();
+</script>
+</body>
+</html>

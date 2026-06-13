@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dhiraj Sinha - Resume</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #d8dde3; }
+  body {
+    font-family: Calibri, "Segoe UI", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.34;
+    color: #1a1a1a;
+    background: #d8dde3;
+    margin: 0;
+    padding: 0;
+  }
+  .resume-page {
+    max-width: 210mm;
+    margin: 20px auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  }
+  .resume-inner { padding: 18mm 22mm; }
+  h1 { font-size: 20pt; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
+  .headline { font-size: 10pt; color: #2c5282; font-weight: 600; margin-bottom: 5px; line-height: 1.38; }
+  .contact { font-size: 9.5pt; color: #444; margin-bottom: 11px; }
+  .contact a { color: #2c5282; text-decoration: none; }
+  h2 {
+    font-size: 10.5pt; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #2c5282;
+    border-bottom: 1.5px solid #2c5282;
+    padding-bottom: 2px; margin: 11px 0 6px;
+  }
+  .job { margin-bottom: 9px; }
+  .job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+  .job-title { font-weight: 700; font-size: 10.5pt; }
+  .job-date { font-size: 9.5pt; color: #555; white-space: nowrap; }
+  .job-company { font-size: 10pt; color: #333; font-weight: 600; margin: 2px 0 4px; }
+  .job-meta { font-size: 9.5pt; color: #666; font-style: italic; margin-bottom: 3px; }
+  ul { padding-left: 16px; }
+  li { margin-bottom: 2px; font-size: 10pt; }
+  .summary p { font-size: 10pt; text-align: justify; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 22px; font-size: 9.5pt; }
+  .skills-grid dt { font-weight: 700; display: inline; }
+  .skills-grid dt::after { content: ": "; }
+  .skills-grid dd { display: inline; margin: 0; }
+  .edu-item { margin-bottom: 5px; font-size: 10pt; }
+  .highlights li { margin-bottom: 2px; }
+  .resume-page-two { margin-top: 0; }
+  .featured-note {
+    margin-top: 10px; padding: 8px 10px; background: #f4f8fc;
+    border-left: 3px solid #2c5282; font-size: 9pt; color: #444;
+  }
+  @media print {
+    html, body {
+      background: #fff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 10pt;
+      line-height: 1.27;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .resume-page { max-width: none; width: 100%; margin: 0; box-shadow: none; }
+    .resume-inner {
+      padding: 10mm 20mm 8mm 20mm !important;
+      box-sizing: border-box;
+    }
+    h1 { font-size: 17pt; margin-bottom: 2px; }
+    h2 { margin: 7px 0 4px; font-size: 10pt; page-break-after: avoid; }
+    .headline { font-size: 9.5pt; margin-bottom: 3px; line-height: 1.32; }
+    .contact { margin-bottom: 6px; font-size: 9pt; }
+    .job { margin-bottom: 6px; page-break-inside: avoid; break-inside: avoid; }
+    .job-company { margin-bottom: 2px; }
+    .job-meta { margin-bottom: 2px; }
+    li { margin-bottom: 1px; font-size: 9.5pt; line-height: 1.27; }
+    .summary p { font-size: 9.5pt; line-height: 1.27; }
+    /* Page 1 = Summary + Experience | Page 2 = Skills + Education + Highlights */
+    .resume-page-two {
+      page-break-before: always;
+      break-before: page;
+      padding-top: 0;
+    }
+    .resume-page-two > h2:first-child { margin-top: 0; }
+    .skills-grid {
+      font-size: 9pt;
+      gap: 2px 18px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .resume-page-two h2 { page-break-after: avoid; break-after: avoid; }
+    .edu-block, .highlights-block {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .edu-item { margin-bottom: 3px; font-size: 9.5pt; }
+    .featured-note { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="resume-page">
+<div class="resume-inner">
+
+<h1>Dhiraj Sinha</h1>
+<div class="headline">Senior Product &amp; Engineering Leader | Enterprise B2B SaaS | Salesforce · HubSpot · Dynamics | 30+ Team | Global Stakeholders</div>
+<div class="contact">
+  Bhilai, Chhattisgarh, India &nbsp;|&nbsp;
+  <a href="mailto:yy.dhiraj@gmail.com">yy.dhiraj@gmail.com</a> &nbsp;|&nbsp;
+  <a href="https://www.linkedin.com/in/dhiraj-sinha-75803a131">linkedin.com/in/dhiraj-sinha-75803a131</a> &nbsp;|&nbsp;
+  <a href="https://www.leadangel.com/">leadangel.com</a>
+</div>
+
+<h2>Professional Summary</h2>
+<div class="summary">
+  <p>Product and engineering leader with 15+ years of experience building and scaling enterprise B2B SaaS products. Currently lead 30+ engineers and support staff in India for a US-headquartered SaaS company, partnering directly with founders on product strategy, PRDs, roadmaps, and delivery. Deep expertise in CRM integrations (Salesforce, HubSpot, Microsoft Dynamics), Agile product operations, and cross-functional leadership across global teams. Hands-on technical fluency in Node.js, React, Angular, and PostgreSQL. Track record of improving delivery velocity by 35% and compressing executive feedback cycles from weeks to days.</p>
+</div>
+
+<h2>Professional Experience</h2>
+
+<div class="job">
+  <div class="job-header">
+    <span class="job-title">Senior Product Manager - India Operations</span>
+    <span class="job-date">May 2024 – Present</span>
+  </div>
+  <div class="job-company">LeadAngel Technologies Pvt Ltd</div>
+  <div class="job-meta">Bhilai, India (HQ: USA) · B2B Enterprise SaaS · CRM Lead Automation</div>
+  <ul>
+    <li>Lead product and engineering operations for a US-headquartered B2B enterprise SaaS platform, managing 30+ engineers and support staff across India.</li>
+    <li>Primary interface between US founders/executive stakeholders and India engineering; translate priorities into PRDs, quarterly roadmaps, and release plans.</li>
+    <li>Own product strategy for automated lead assignment and enterprise CRM integrations (Salesforce, HubSpot, Microsoft Dynamics).</li>
+    <li>Improved delivery velocity and product quality by 35% through Agile sprint planning, release governance, and QA process redesign.</li>
+    <li>Reduced stakeholder feedback cycles from weeks to days via structured exec syncs, demo cadence, and prioritization frameworks.</li>
+    <li>Drive cross-functional alignment across Product, Engineering, QA, and Customer Support for enterprise client outcomes and production readiness.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <span class="job-title">Senior Product Consultant</span>
+    <span class="job-date">Apr 2021 – Jun 2023</span>
+  </div>
+  <div class="job-company">Saytum Technologies Pvt Ltd</div>
+  <div class="job-meta">Bhilai, India · B2B SaaS Marketplace Platform</div>
+  <ul>
+    <li>Owned product strategy for a B2B SaaS marketplace platform supporting high-volume, transaction-heavy enterprise workflows.</li>
+    <li>Defined product workflows, business rules, and system architecture - service matching, partner onboarding, and allocation logic.</li>
+    <li>Authored PRDs, functional specs, and business logic documentation from MVP through production releases.</li>
+    <li>Built roadmap aligned to business goals, prioritizing by customer impact, revenue leverage, and engineering capacity.</li>
+    <li>Partnered with engineering on journey optimization, release planning, and UAT to improve conversion and platform reliability.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <span class="job-title">Product Owner - Enterprise Platform</span>
+    <span class="job-date">Jun 2010 – Aug 2020</span>
+  </div>
+  <div class="job-company">Jai Balaji Logitech Private Limited (JBL Xpress)</div>
+  <div class="job-meta">Delhi, India · Enterprise Operations Platform</div>
+  <ul>
+    <li>Owned product requirements and workflow design for an enterprise operations platform across multi-location business units.</li>
+    <li>Partnered with development teams on specifications, UAT, and production rollouts, improving release predictability.</li>
+    <li>Translated business requirements into user flows, business rules, and prioritized feature backlogs.</li>
+    <li>Progressed through increasing leadership responsibility over a 10-year tenure, culminating in product ownership at scale.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <span class="job-title">Professional Development - Full-Stack &amp; Product Tech Upskilling</span>
+    <span class="job-date">Aug 2020 – Mar 2021</span>
+  </div>
+  <div class="job-company">SEED IT Solutions + Independent Study</div>
+  <div class="job-meta">Bhilai, India</div>
+  <ul>
+    <li>Completed a certified 1-year full-stack development program (Node.js, React, Angular, HTML/CSS, SQL, PostgreSQL).</li>
+    <li>Applied learning through hands-on projects bridging business analysis skills with modern software development practices.</li>
+    <li>Transitioned from enterprise operations/product ownership into dedicated product and SaaS consulting roles.</li>
+  </ul>
+</div>
+
+<div class="resume-page-two">
+
+  <br><br>
+
+<h2>Technical &amp; Product Skills</h2>
+<dl class="skills-grid">
+  <dt>Product</dt><dd>Product Strategy, PRD Writing, Roadmapping, Agile/Scrum, Sprint Planning, UAT, Jira, Go-to-Market, SDLC</dd>
+  <dt>CRM / SaaS</dt><dd>Salesforce, HubSpot, Microsoft Dynamics, B2B SaaS, Enterprise Software, API Integrations</dd>
+  <dt>Technical</dt><dd>Node.js, React.js, Angular, JavaScript, HTML/CSS, PostgreSQL, SQL, System Design</dd>
+  <dt>Leadership</dt><dd>Cross-functional Team Leadership (30+), Stakeholder Management, Global Teams, Release Management</dd>
+</dl>
+
+<h2>Education &amp; Certifications</h2>
+<div class="edu-block">
+  <div class="edu-item"><strong>Bachelor of Commerce</strong> - Pt. Ravishankar Shukla University, Raipur &nbsp;|&nbsp; 2005 – 2008</div>
+  <div class="edu-item"><strong>Certified Full-Stack Developer</strong> - SEED IT Solutions, Bhilai &nbsp;|&nbsp; 2020 – 2021</div>
+</div>
+
+<h2>Key Highlights</h2>
+<ul class="highlights highlights-block">
+  <li>Built and lead a 30+ member product &amp; engineering organization for a US SaaS company with direct founder-level stakeholder ownership.</li>
+  <li>Improved SaaS delivery outcomes by 35% through Agile process redesign and QA governance.</li>
+  <li>15+ years progressing from enterprise product ownership to senior B2B SaaS product and engineering leadership.</li>
+  <li>Self-built full-stack capability enabling faster PRD-to-ship cycles with engineering teams.</li>
+</ul>
+
+</div><!-- .resume-page-two -->
+
+<div class="featured-note">
+  <strong>Save as PDF:</strong> Ctrl+P → Save as PDF → Margins: Minimum → uncheck Headers and footers → Save.
+</div>
+
+</div><!-- .resume-inner -->
+</div><!-- .resume-page -->
+
+</body>
+</html>
